@@ -1,0 +1,3 @@
+C:/Users/xboxb/Desktop/Ransomware/build/CMakeFiles/ransomware_cpp.dir
+C:/Users/xboxb/Desktop/Ransomware/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/xboxb/Desktop/Ransomware/build/CMakeFiles/ZERO_CHECK.dir

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\xboxb\Desktop\Ransomware\build\CMakeFiles\d89283a0630cbb8aa3a9f9160304ee8d\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{BFCE946C-DA79-379D-A7E9-AA54206F3F51}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
