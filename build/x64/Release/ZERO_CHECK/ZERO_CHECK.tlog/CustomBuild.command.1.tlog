@@ -1,6 +1,6 @@
 ^C:\USERS\XBOXB\DESKTOP\RANSOMWARE\BUILD\CMAKEFILES\D89283A0630CBB8AA3A9F9160304EE8D\GENERATE.STAMP.RULE
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/xboxb/Desktop/Ransomware -BC:/Users/xboxb/Desktop/Ransomware/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/xboxb/Desktop/Ransomware/build/Ransomware.sln
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/xboxb/Desktop/Ransomware -BC:/Users/xboxb/Desktop/Ransomware/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/xboxb/Desktop/Ransomware/build/ransomware_cpp.sln
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
