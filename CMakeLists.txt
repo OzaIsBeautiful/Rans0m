@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(ransomware_cpp VERSION 1.0)
+project(Ransomware VERSION 1.0)
 
 # Configuration du standard C++
 set(CMAKE_CXX_STANDARD 17)
@@ -15,8 +15,9 @@ if(MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
     add_definitions(-D_SILENCE_CXX17_CODECVT_HEADER_DEPRECATION_WARNING)
     
-    # Optimiser pour la vitesse
+    # Optimiser pour la vitesse et désactiver /RTC1
     add_compile_options(/O2 /Ot /GL)
+    string(REPLACE "/RTC1" "" CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG}")
 endif()
 
 # Trouver OpenSSL
@@ -25,45 +26,33 @@ if(NOT OPENSSL_FOUND)
     message(FATAL_ERROR "OpenSSL introuvable. Spécifiez le chemin avec -DOPENSSL_ROOT_DIR=...")
 endif()
 
-# Définir les fichiers sources
+# Définir les sources - tous les fichiers nécessaires pour un seul exécutable
 set(SOURCES 
     ransomware.cpp
+    ransomware_wmi.cpp
+    techniques_avancees.cpp
 )
 
-# Définir l'exécutable
-add_executable(ransomware_cpp ${SOURCES})
+# Définir un seul exécutable qui contient toutes les fonctionnalités
+add_executable(ransomware_complet ${SOURCES})
 
 # Bibliothèques Windows
 if(WIN32)
-    set(WINDOWS_LIBS 
-        ws2_32      # Winsock
-        shlwapi     # Shell API
-        shell32     # Shell32
-        crypt32     # Cryptographie
-        wininet     # Internet
-        advapi32    # Services avancés
-        user32      # Interface utilisateur
-        gdi32       # GDI
-        ole32       # OLE
-        oleaut32    # OLE Automation
-        uuid        # UUID
-    )
-    target_link_libraries(ransomware_cpp PRIVATE ${WINDOWS_LIBS})
+    target_link_libraries(ransomware_complet PRIVATE ws2_32 wininet crypt32 Shlwapi)
 endif()
 
-# Lier OpenSSL
-target_include_directories(ransomware_cpp PRIVATE ${OPENSSL_INCLUDE_DIR})
-target_link_libraries(ransomware_cpp PRIVATE ${OPENSSL_LIBRARIES})
+# Lier avec OpenSSL
+target_link_libraries(ransomware_complet PRIVATE OpenSSL::SSL OpenSSL::Crypto)
 
 # Définir les répertoires d'inclusion et de bibliothèques
-target_include_directories(ransomware_cpp PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(ransomware_complet PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Afficher un message d'avertissement
 message(WARNING "Ce programme est destiné à des fins éducatives uniquement et ne doit pas être utilisé pour des activités illégales.")
 
-# Installation (option)
-install(TARGETS ransomware_cpp DESTINATION bin)
+# Installation
+install(TARGETS ransomware_complet DESTINATION bin)
 
 # Messages informatifs
-message(STATUS "Configuration terminée pour ${PROJECT_NAME} v${PROJECT_VERSION}")
+message(STATUS "Configuration terminée - Utiliser 'cmake --build .' pour compiler")
 message(STATUS "OpenSSL trouvé: ${OPENSSL_VERSION}") 

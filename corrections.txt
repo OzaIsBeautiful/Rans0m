@@ -1,0 +1,12 @@
+1. Ligne 1207 (problème de syntaxe) : Vérifier toute syntaxe incorrecte comme l'utilisation de ::
+
+2. Ligne 1634 (infoDir non déclaré) : La variable infoDir est déclarée à la ligne 1166 mais semble être hors de portée. Il faut soit déplacer la déclaration, soit redéclarer la variable.
+
+3. Lignes 1637-1643 et 1681-1695 (redéfinition de zipPath, zipFile, zipData, zipBase64) : Ces variables sont définies deux fois. Il faut renommer les secondes occurrences pour éviter les redéfinitions.
+
+Corrections suggérées :
+- Renommer les variables à la deuxième occurrence, par exemple :
+  * zipPath -> stolenFilesZipPath
+  * zipFile -> stolenFilesZipFile
+  * zipData -> stolenFilesZipData
+  * zipBase64 -> stolenFilesZipBase64 
